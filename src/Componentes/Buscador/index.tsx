@@ -9,33 +9,53 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import estilos from "./Buscador.module.scss";
 import { IReceita } from "../../interfaces/IReceita";
+import { BiSearchAlt } from "react-icons/bi";
 
-interface Props{
+interface Props {
   receitas: IReceita[];
-  setReceitas: React.Dispatch<React.SetStateAction<IReceita[]>>
+  setReceitas: React.Dispatch<React.SetStateAction<IReceita[]>>;
+  validaYtb: boolean;
+  setValidaYtb: React.Dispatch<React.SetStateAction<boolean>>;
+
+  pesquisa: string;
+  setPesquisa: React.Dispatch<React.SetStateAction<string>>;
+  tipoBusca: string;
+  setTipoBusca: React.Dispatch<React.SetStateAction<string>>;
+  pesquisaRealizada: boolean;
+  setPesquisaRealizada: React.Dispatch<React.SetStateAction<boolean>>;
+  isShown: boolean;
+  setIsShown: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function Buscador(props: Props) {
   // Constantes
-  const {receitas, setReceitas} = props;
-  const [pesquisa, setPesquisa] = useState("");
-  
-  const [tipoBusca, setTipoBusca] = useState("");
-  const [url, setUrl] = useState("");
-  const [pesquisaRealizada, setPesquisaRealizada] = useState(false);
-  const [erroTipoVazio, setErroTipoVazio] = useState(false);
+  const {
+    receitas,
+    setReceitas,
+    validaYtb,
+    setValidaYtb,
 
-  //Função para selecionar o item menu
-  const tipoChange = (event: SelectChangeEvent) => {
-    setTipoBusca(event.target.value);
-  };
+    pesquisa,
+    setPesquisa,
+    tipoBusca,
+    setTipoBusca,
+    pesquisaRealizada,
+    setPesquisaRealizada,
+    isShown,
+    setIsShown,
+  } = props;
+
+  const [url, setUrl] = useState("");
+
+  const [erroTipoVazio, setErroTipoVazio] = useState(false);
 
   // useEffect que controla a requição na API
   useEffect(() => {
     console.log(receitas);
     console.log(tipoBusca);
-    // condição após o formulario ser corretamente preechido e validado
+    console.log(isShown);
     if (pesquisaRealizada) {
+      // condição após o formulario ser corretamente preechido e validado
       // axio com URL após validação no if
       axios
         .get(url)
@@ -48,12 +68,26 @@ export default function Buscador(props: Props) {
       // reseta o estado de pesquisa realizada para evitar loop infinito
       setPesquisaRealizada(false);
     }
+    setTimeout(() => setPesquisa(""), 1000);
   }, [receitas, tipoBusca, url, pesquisaRealizada]);
+
+  useEffect(() => {
+    if (isShown){
+      buscarReceitas();
+      setIsShown(false);
+    }
+  }, [receitas, tipoBusca, url, isShown]);
 
   // função para buscar as receitas
   function buscarReceitas() {
     buscarDetalhes();
   }
+
+  const teclarEnter = (event: any) => {
+    if (event.key === "Enter") {
+      buscarReceitas();
+    }
+  };
 
   // função para validar os dados
   function buscarDetalhes() {
@@ -61,17 +95,17 @@ export default function Buscador(props: Props) {
       setUrl(
         `https://www.themealdb.com/api/json/v1/1/search.php?s=${pesquisa}`
       );
-      setErroTipoVazio(false);
+      setValidaYtb(true);
     } else if (tipoBusca === "primeiraLetra") {
       setUrl(
         `https://www.themealdb.com/api/json/v1/1/search.php?f=${pesquisa}`
       );
-      setErroTipoVazio(false);
+      setValidaYtb(true);
     } else if (tipoBusca === "ingrediente") {
       setUrl(
         `https://www.themealdb.com/api/json/v1/1/filter.php?i=${pesquisa}`
       );
-      setErroTipoVazio(false);
+      setValidaYtb(false);
     } else if (tipoBusca === "") {
       setErroTipoVazio(true);
     }
@@ -82,36 +116,37 @@ export default function Buscador(props: Props) {
   return (
     <>
       <div className={estilos.buscador}>
-        <FormControl sx={{minWidth: 70, maxWidth: 70}}>
-          <InputLabel id="demo-select-small-label" error={erroTipoVazio} sx={{fontSize: 16}}>
-            Tipo
-          </InputLabel>
-          <Select
-            labelId="demo-select-small-label"
-            id="demo-select-small"
-            value={tipoBusca}
-            label="Tipo de Busca"
-            onChange={tipoChange}
-            error={erroTipoVazio}
-          >
-            <MenuItem value={"nome"} >Nome</MenuItem>
-            <MenuItem value={"ingrediente"} >Ingrediente</MenuItem>
-            <MenuItem value={"primeiraLetra"} >Primeira Letra</MenuItem>
-          </Select>
-        </FormControl>
-        <TextField
-          error={erroTipoVazio}
-          id="outlined-basic"
-          label="Que Receita Deseja Buscar?"
-          value={pesquisa}
-          variant="outlined"
-          onChange={(e) => setPesquisa(e.target.value)}
-          helperText={erroTipoVazio && "ESCOLHA UM TIPO DE BUSCA"}
-          sx={{fontSize: 10}}
-        ></TextField>
-        <Button onClick={() => buscarReceitas()} variant="outlined" sx={{ maxHeight: 56}}>
+        <select
+          value={tipoBusca}
+          onChange={(e) => setTipoBusca(e.target.value)}
+          className={estilos.selecionarTipo}
+        >
+          <optgroup className={estilos.selecionarTipo__menu}>
+            <option value="" disabled>
+              Tipo
+            </option>
+            <option value="nome">Nome</option>
+            <option value="primeiraLetra">Primeira Letra</option>
+            <option value="ingrediente">Ingrediente</option>
+          </optgroup>
+        </select>
+        <div className={estilos.busca}>
+          <input
+            onKeyDown={teclarEnter}
+            className={estilos.busca__inputTexto}
+            type="text"
+            onChange={(e) => setPesquisa(e.target.value)}
+            value={pesquisa}
+            placeholder="Que Receita Deseja Buscar?"
+          />
+          <BiSearchAlt
+            className={estilos.busca__icon}
+            onClick={() => buscarReceitas()}
+          />
+        </div>
+        {/* <Button variant="outlined" sx={{ maxHeight: 56 }}>
           Buscar
-        </Button>
+        </Button> */}
       </div>
     </>
   );

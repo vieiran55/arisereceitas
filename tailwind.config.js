@@ -20,7 +20,8 @@ module.exports = {
         metallicSeaweed: "#088395",
         verdeLoud: "#70FF00",
         gold: "#DAA520",
-        rubi: "#CE633E"
+        rubi: "#CE633E", 
+        brancoGelo: "#F7F7F7"
       },
       fontFamily: {
         inter: ["Inter", "sans-serif"],
