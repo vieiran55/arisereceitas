@@ -1,0 +1,34 @@
+@import "../../styles/breakpoints";
+
+.buscador {
+  @apply flex flex-row justify-center;
+}
+
+.busca {
+  @apply relative;
+  &__inputTexto {
+    @apply w-60 h-10 p-2 bg-brancoGelo shadow-sm shadow-slate-300 rounded-md not-italic font-normal text-xs text-left text-black;
+    &::placeholder {
+      @apply text-center;
+    }
+  }
+  &__iconLupa {
+    @apply absolute right-2 top-1/3 w-5 h-5 cursor-pointer;
+  }
+  &__iconLoad{
+    @apply absolute right-2 top-1/3 w-5 h-5 cursor-pointer animate-spin;
+  }
+  &__hideIcon{
+    @apply hidden;
+  }
+}
+
+.selecionarTipo {
+  @apply bg-brancoGelo shadow-sm shadow-slate-300 rounded-md not-italic font-normal text-xs text-center;
+  &:focus {
+    @apply text-black rounded-md;
+  }
+  &__menu {
+    @apply rounded-md border-none;
+  }
+}

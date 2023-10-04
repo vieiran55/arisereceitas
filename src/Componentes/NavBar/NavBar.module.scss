@@ -1,0 +1,19 @@
+@import "../../styles/breakpoints";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Michroma&display=swap");
+
+
+.destaqueTitulo{
+  font-family: "Michroma", sans-serif;
+  @media screen and (min-width: $tablet) {
+    @apply hidden;
+  }
+  @apply py-3 px-2;
+  &__1{
+    @apply text-verdeLoud font-bold text-2xl;
+  }
+  &__2{
+    @apply font-bold text-2xl;
+  }
+}

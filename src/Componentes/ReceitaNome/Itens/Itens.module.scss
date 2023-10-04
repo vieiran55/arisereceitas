@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Italiana&display=swap');
+
+.item{
+  @apply flex flex-wrap flex-col w-10/12 m-2 items-center justify-around max-w-xs uppercase px-6 py-4 shadow-[0_8px_14px_0_rgba(0,0,0,0.2)] drop-shadow-2xl h-full border rounded-2xl border-solid border-[coral];
+  &__imagem{
+    @apply items-center w-full flex flex-col;
+    &__foto{
+      @apply rounded-lg w-60;
+    }
+  }
+  &__detalhes{
+    @apply flex flex-row w-full justify-around;
+  }
+  &__titulo{
+    font-family: 'Italiana', serif;
+    @apply text-2xl font-bold mb-5 flex flex-col items-center justify-center;
+  }
+  &__categoriaBotao{
+    @apply flex flex-col w-1/2 items-center p-2;
+  }
+  &__categoria{
+    font-family: 'Italiana', serif;
+    @apply flex flex-wrap justify-between mb-5 font-bold;
+  }
+  &__botao{
+    @apply w-full flex flex-col items-center px-6 py-2.5 bg-red-600 text-white font-medium text-xs text-center leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out;
+    &__icon{
+      @apply w-10 h-4;
+    }
+  }
+}
