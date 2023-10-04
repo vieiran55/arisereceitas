@@ -3,6 +3,7 @@ import Home from "./Pages/Home";
 import { useState } from "react";
 import Receitas from "./Pages/Receitas";
 import { IReceita } from "./interfaces/IReceita";
+import Rodape from "./Componentes/Rodape";
 
 export default function AppRouter() {
   const [receitas, setReceitas] = useState<IReceita[]>([]);
@@ -24,6 +25,7 @@ export default function AppRouter() {
           }
         />
       </Routes>
+      <Rodape />
     </Router>
   );
 }

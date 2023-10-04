@@ -114,6 +114,14 @@ module.exports = {
           "0%, 100%": { transform: "rotateY(180deg)" },
           "100%": { transform: "rotateY(0)" },
         },
+        spin: {
+          "0%": {
+            transform: "rotate(0deg)"
+          },
+          "100%": {
+            transform: "rotate(360deg)"
+          }
+        }
       },
       animation: {
         wavingHand: "wave 10s linear infinite",
@@ -131,7 +139,8 @@ module.exports = {
         pingStop: "ping 1s",
         flip: "flip 1s ease-in-out infinite",
         flipSlow: "flipSlow 2s",
-        fadeIn: "fadein 1s"
+        fadeIn: "fadein 1s",
+        spin: "spin 2s linear infinite"
       },
     },
   },

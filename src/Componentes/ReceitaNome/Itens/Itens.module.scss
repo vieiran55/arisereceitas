@@ -1,7 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Italiana&display=swap');
+@import "../../../styles/breakpoints";
 
 .item{
-  @apply flex flex-wrap flex-col w-10/12 m-2 items-center justify-around max-w-xs uppercase px-6 py-4 shadow-[0_8px_14px_0_rgba(0,0,0,0.2)] drop-shadow-2xl h-full border rounded-2xl border-solid border-[coral];
+  @apply flex flex-wrap flex-col w-10/12 m-2 items-center justify-around uppercase px-6 py-4 shadow-[0_8px_14px_0_rgba(0,0,0,0.2)] drop-shadow-2xl h-full border rounded-2xl border-solid border-[coral];
+  @media screen and (min-width: 480px) {
+    @apply w-[400px] border;
+  }
+  @media screen and (min-width: 780px) {
+    @apply w-[700px] border;
+  }
+  &__imagemConteiner{
+    @apply flex flex-col-reverse;
+    @media screen and (min-width: 780px) {
+      @apply flex-row w-full justify-around;
+    }
+  }
   &__imagem{
     @apply items-center w-full flex flex-col;
     &__foto{
@@ -9,14 +22,42 @@
     }
   }
   &__detalhes{
-    @apply flex flex-row w-full justify-around;
+    @apply flex flex-col w-full justify-around;
+    @media screen and (min-width: 780px) {
+      @apply flex-col items-center;
+    }
   }
   &__titulo{
     font-family: 'Italiana', serif;
-    @apply text-2xl font-bold mb-5;
+    @apply text-2xl font-bold flex flex-col items-center justify-center;
+    @media screen and (min-width: 780px) {
+      @apply text-4xl;
+    }
+  }
+  &__subtitulo{
+    font-family: 'Italiana', serif;
+    @apply text-lg font-bold my-5 flex flex-col items-center justify-center;
+  }
+  &__listaConteiner{
+    @apply flex flex-col items-center justify-around;
+  }
+  &__lista{
+    font-family: 'Popins', serif;
+    @apply text-base my-2 text-justify items-center ;
+    @media screen and (min-width: 780px) {
+      column-gap: 100px;
+      @apply columns-2;
+    }
+  }
+  &__paragrafo{
+    font-family: 'Popins', serif;
+    @apply text-base my-2 text-justify;
+  }
+  &__categoriaConteiner{
+    @apply flex flex-row my-4;
   }
   &__categoriaBotao{
-    @apply flex flex-col w-1/2 items-center p-2;
+    @apply flex flex-col w-full items-center p-2;
   }
   &__categoria{
     font-family: 'Italiana', serif;

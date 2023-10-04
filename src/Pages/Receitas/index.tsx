@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Buscador from "../../Componentes/Buscador";
 import NavBar from "../../Componentes/NavBar";
 import ReceitaNome from "../../Componentes/ReceitaNome";
@@ -24,6 +24,10 @@ export default function Receitas(props: Props) {
   const [tipoBusca, setTipoBusca] = useState("");
   const [pesquisaRealizada, setPesquisaRealizada] = useState(false);
   const [isShown, setIsShown] = useState(true);
+  const [validarNull, setValidarNull] = useState(false);
+  const [receitaNome, setReceitaNome] = useState(false);
+  const [receitaIngrediente, setReceitaIngrediente] = useState(false);
+  const [receitaPrimeiraLetra, setReceitaPrimeiraLetra] = useState(false);
 
   // Dentro do componente Buscador
   function onMoreClick(nome: string) {
@@ -31,37 +35,53 @@ export default function Receitas(props: Props) {
     setPesquisa(nome);
   }
   //Função para selecionar o item menu
-
+  console.log(receitas);
   return (
     <>
       <div>
         <NavBar />
       </div>
       <div>
-        <Buscador
-          receitas={receitas}
-          setReceitas={setReceitas}
-          validaYtb={validaYtb}
-          setValidaYtb={setValidaYtb}
-          pesquisa={pesquisa}
-          setPesquisa={setPesquisa}
-          tipoBusca={tipoBusca}
-          setTipoBusca={setTipoBusca}
-          pesquisaRealizada={pesquisaRealizada}
-          setPesquisaRealizada={setPesquisaRealizada}
-          isShown={isShown}
-          setIsShown={setIsShown}
-        />
-      </div>
-      <div>
-        <ReceitaNome
-          receitas={receitas}
-          setReceitas={setReceitas}
-          validaYtb={validaYtb}
-          isShown={isShown}
-          setIsShown={setIsShown}
-          onMoreClick={onMoreClick}
-        />
+        <div className={estilos.corpo}>
+          <Buscador
+            receitas={receitas}
+            setReceitas={setReceitas}
+            validaYtb={validaYtb}
+            setValidaYtb={setValidaYtb}
+            pesquisa={pesquisa}
+            setPesquisa={setPesquisa}
+            tipoBusca={tipoBusca}
+            setTipoBusca={setTipoBusca}
+            pesquisaRealizada={pesquisaRealizada}
+            setPesquisaRealizada={setPesquisaRealizada}
+            isShown={isShown}
+            setIsShown={setIsShown}
+            validarNull={validarNull}
+            setValidarNull={setValidarNull}
+            receitaNome={receitaNome}
+            setReceitaNome={setReceitaNome}
+            receitaIngrediente={receitaIngrediente}
+            setReceitaIngrediente={setReceitaIngrediente}
+            receitaPrimeiraLetra={receitaPrimeiraLetra}
+            setReceitaPrimeiraLetra={setReceitaPrimeiraLetra}
+          />
+        </div>
+        <div className={estilos.receitaNome}>
+          <ReceitaNome
+            receitas={receitas}
+            setReceitas={setReceitas}
+            validaYtb={validaYtb}
+            isShown={isShown}
+            setIsShown={setIsShown}
+            onMoreClick={onMoreClick}
+            receitaNome={receitaNome}
+            setReceitaNome={setReceitaNome}
+            receitaIngrediente={receitaIngrediente}
+            setReceitaIngrediente={setReceitaIngrediente}
+            receitaPrimeiraLetra={receitaPrimeiraLetra}
+            setReceitaPrimeiraLetra={setReceitaPrimeiraLetra}
+          />
+        </div>
       </div>
     </>
   );

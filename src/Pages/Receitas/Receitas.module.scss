@@ -4,3 +4,10 @@
 .icon{
   @apply w-6 h-6;
 }
+
+.corpo{
+  @apply flex flex-col items-center;
+}
+.receitaNome{
+  @apply min-h-[90vh]
+}
