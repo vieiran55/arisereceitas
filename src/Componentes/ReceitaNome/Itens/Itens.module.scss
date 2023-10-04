@@ -2,7 +2,7 @@
 @import "../../../styles/breakpoints";
 
 .item{
-  @apply flex flex-wrap flex-col w-10/12 m-2 items-center justify-around uppercase px-6 py-4 shadow-[0_8px_14px_0_rgba(0,0,0,0.2)] drop-shadow-2xl h-full border rounded-2xl border-solid border-[coral];
+  @apply flex flex-wrap flex-col w-10/12 m-2 items-center justify-around uppercase px-6 py-4 shadow-[0_8px_14px_0_rgba(0,0,0,0.2)] drop-shadow-2xl h-full border rounded-2xl  border-[coral] border-solid;
   @media screen and (min-width: 480px) {
     @apply w-[400px] border;
   }

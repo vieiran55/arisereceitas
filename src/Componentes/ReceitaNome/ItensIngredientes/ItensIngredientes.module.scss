@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Italiana&display=swap');
 
 .item{
-  @apply flex flex-wrap flex-col w-10/12 m-2 items-center justify-around max-w-xs uppercase px-6 py-4 shadow-[0_8px_14px_0_rgba(0,0,0,0.2)] drop-shadow-2xl h-[420px] border rounded-2xl border-solid border-[coral];
+  @apply flex flex-wrap flex-col w-10/12 m-2 items-center justify-around max-w-xs uppercase px-6 py-4 shadow-[0_8px_14px_0_rgba(0,0,0,0.2)] drop-shadow-2xl h-[420px] border rounded-2xl  border-[coral] border-solid;
   &__imagem{
     @apply items-center w-full flex flex-col;
     &__foto{
