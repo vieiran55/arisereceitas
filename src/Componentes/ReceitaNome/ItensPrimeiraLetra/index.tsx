@@ -1,8 +1,5 @@
-import { Link } from "react-router-dom";
 import { IReceita } from "../../../interfaces/IReceita";
 import estilos from "./ItensPrimeiraLetra.module.scss";
-import { ImYoutube2 } from "react-icons/im";
-import { useEffect, useState } from "react";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 interface Props extends IReceita {
@@ -14,21 +11,14 @@ interface Props extends IReceita {
 
 export default function ItensPrimeiraLetra(props: Props) {
   const {
-    idMeal,
     strMeal,
     strMealThumb,
-    strYoutube,
-    strInstructions,
-    strIngredient1,
-    strCategory,
-    validaYtb,
     isShown,
     setIsShown,
     onMoreClick,
   } = props;
 
   const handleMoreClick = () => {
-    // Chamamos a função onMoreClick passando o nome da receita
     onMoreClick(strMeal);
     topo();
     if (!isShown) {

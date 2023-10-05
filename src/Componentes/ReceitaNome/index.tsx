@@ -22,40 +22,34 @@ interface Props {
 export default function ReceitaNome(props: Props) {
   const {
     receitas,
-    setReceitas,
     validaYtb,
     isShown,
     setIsShown,
     onMoreClick,
     receitaNome,
-    setReceitaNome,
     receitaIngrediente,
-    setReceitaIngrediente,
     receitaPrimeiraLetra,
-    setReceitaPrimeiraLetra,
   } = props;
   return (
     <>
-      {receitaNome &&
+      {receitaNome && (
         <div className={estilos.ReceitaNome}>
-          {receitas !== null ? (
-            receitas.map((item, index) => (
-              <Itens
-                key={index}
-                {...item}
-                validaYtb={validaYtb}
-                isShown={isShown}
-                setIsShown={setIsShown}
-                onMoreClick={onMoreClick}
-              />
-            ))
+          {receitas !== null && receitas.length > 0 ? (
+            <Itens
+              key={0} 
+              {...receitas[0]}
+              validaYtb={validaYtb}
+              isShown={isShown}
+              setIsShown={setIsShown}
+              onMoreClick={onMoreClick}
+            />
           ) : (
             <div>No Results.</div>
           )}
         </div>
-      }
-      {
-        receitaPrimeiraLetra &&
+      )}
+
+      {receitaPrimeiraLetra && (
         <div className={estilos.ReceitaNome}>
           {receitas !== null ? (
             receitas.map((item, index) => (
@@ -72,9 +66,8 @@ export default function ReceitaNome(props: Props) {
             <div>No Results.</div>
           )}
         </div>
-      }
-      {
-        receitaIngrediente &&
+      )}
+      {receitaIngrediente && (
         <div className={estilos.ReceitaNome}>
           {receitas !== null ? (
             receitas.map((item, index) => (
@@ -91,7 +84,7 @@ export default function ReceitaNome(props: Props) {
             <div>No Results.</div>
           )}
         </div>
-      }
+      )}
     </>
   );
 }

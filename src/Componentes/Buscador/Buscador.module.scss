@@ -29,10 +29,16 @@
     }
   }
   &__iconLupa {
-    @apply absolute right-2 top-1/3 w-5 h-5 cursor-pointer;
+    @apply absolute right-2 top-1/4 w-5 h-5 cursor-pointer;
+    @media screen and (min-width: 780px) {
+      @apply top-1/3;
+    }
   }
   &__iconLoad{
-    @apply absolute right-2 top-1/3 w-5 h-5 cursor-pointer animate-spin;
+    @apply absolute right-2 top-1/4 w-5 h-5 cursor-pointer animate-spin;
+    @media screen and (min-width: 780px) {
+      @apply top-1/3;
+    }
   }
   &__hideIcon{
     @apply hidden;

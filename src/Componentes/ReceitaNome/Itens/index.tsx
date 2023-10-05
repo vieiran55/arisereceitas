@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { IReceita } from "../../../interfaces/IReceita";
 import estilos from "./Itens.module.scss";
 import { ImYoutube2 } from "react-icons/im";
-import { useEffect, useState } from "react";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 interface Props extends IReceita {
@@ -14,7 +13,6 @@ interface Props extends IReceita {
 
 export default function Itens(props: Props) {
   const {
-    idMeal,
     strMeal,
     strMealThumb,
     strYoutube,
@@ -117,7 +115,6 @@ export default function Itens(props: Props) {
 
 
   const handleMoreClick = () => {
-    // Chamamos a função onMoreClick passando o nome da receita
     onMoreClick(strMeal);
     if (!isShown){
       setIsShown(true);

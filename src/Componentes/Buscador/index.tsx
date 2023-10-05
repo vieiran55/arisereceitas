@@ -31,12 +31,9 @@ interface Props {
 }
 
 export default function Buscador(props: Props) {
-  // Constantes
   const {
     receitas,
     setReceitas,
-    validaYtb,
-    setValidaYtb,
     pesquisa,
     setPesquisa,
     tipoBusca,
@@ -45,8 +42,6 @@ export default function Buscador(props: Props) {
     setPesquisaRealizada,
     isShown,
     setIsShown,
-    validarNull,
-    setValidarNull,
     receitaNome,
     setReceitaNome,
     receitaIngrediente,
@@ -59,13 +54,14 @@ export default function Buscador(props: Props) {
 
   const [erroTipoVazio, setErroTipoVazio] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [textoPlaceHolder, setTextoPlaceHolder] = useState("Search for a Recipe");
+  const [textoPlaceHolder, setTextoPlaceHolder] = useState(
+    "Search for a Recipe"
+  );
   const [primeiraBusca, setPrimeiraBusca] = useState(false);
 
-  // useEffect que controla a requisição na API
   useEffect(() => {
     if (pesquisaRealizada) {
-      // axio com URL após validação no if
+
       axios
         .get(url)
         .then((resposta) => {
@@ -74,12 +70,12 @@ export default function Buscador(props: Props) {
         .catch((erro) => {
           console.error("Erro na requisição da API:", erro);
 
-          // Lida com o erro de forma adequada, como exibir uma mensagem de erro ao usuário
+
         })
         .finally(() => {
-          setIsLoading(false); // Define isLoading como false após a busca ser concluída
+          setIsLoading(false); 
         });
-      // reseta o estado de pesquisa realizada para evitar loop infinito
+      
       setPesquisaRealizada(false);
     }
     setTimeout(() => setPesquisa(""), 1000);
@@ -104,23 +100,32 @@ export default function Buscador(props: Props) {
     }
   }, [receitas, isShown, primeiraBusca]);
 
-  // função para buscar as receitas
+  
   function buscarReceitas() {
     if (tipoBusca === "nome") {
-      if (pesquisa.trim().length < 3) {
+      if (pesquisa.trim().length < 3 ) {
         setPesquisa("");
         setTextoPlaceHolder("Invalid Input");
         setErroTipoVazio(true);
-        return; // Impede a busca se a pesquisa for muito curta
+        return;
       }
     }
-  
-    if (pesquisa.trim() === "") {
+
+    if (pesquisa.trim() === "" || /^[0-9]{1}$/.test(pesquisa.trim())) {
       setTextoPlaceHolder("Invalid Input");
       setErroTipoVazio(true);
-      return; // Impede a busca se o campo estiver vazio
+      return; 
     }
-  
+
+    if (tipoBusca === "primeiraLetra") {
+      if (pesquisa.trim().length > 1 || /^[0-9]{1}$/.test(pesquisa.trim())) {
+        setPesquisa("");
+        setTextoPlaceHolder("Invalid Input");
+        setErroTipoVazio(true);
+        return; 
+      }
+    }
+
     setTextoPlaceHolder("Search for a Recipe");
     setErroTipoVazio(false);
     setIsLoading(true);
@@ -133,7 +138,7 @@ export default function Buscador(props: Props) {
     }
   };
 
-  // função para validar os dados
+
   function buscarDetalhes() {
     if (tipoBusca === "nome") {
       setUrl(
@@ -162,7 +167,7 @@ export default function Buscador(props: Props) {
       alert("insira para buscar");
     }
 
-    // define o estado de pesquisa realizada para evitar loop infinito
+ 
     setPesquisaRealizada(true);
   }
 
@@ -176,7 +181,7 @@ export default function Buscador(props: Props) {
         >
           <optgroup className={estilos.selecionarTipo__menu}>
             <option value="" disabled>
-            Category
+              Category
             </option>
             <option value="nome">Name</option>
             <option value="primeiraLetra">First Letter</option>
@@ -186,8 +191,10 @@ export default function Buscador(props: Props) {
         <div className={estilos.busca}>
           <input
             onKeyDown={teclarEnter}
-            className={classNames({[estilos.busca__inputTexto] : !erroTipoVazio,
-              [estilos.busca__inputTextoError] : erroTipoVazio})}
+            className={classNames({
+              [estilos.busca__inputTexto]: !erroTipoVazio,
+              [estilos.busca__inputTextoError]: erroTipoVazio,
+            })}
             type="text"
             onChange={(e) => setPesquisa(e.target.value)}
             value={pesquisa}

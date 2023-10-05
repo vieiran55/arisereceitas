@@ -7,7 +7,7 @@ export default function Rodape() {
     <footer className={estilos.rodape}>
       <div className={estilos.rodape__coteiner}>
         <Link
-          to="https://linktr.ee/vieiran55"
+          to="https://linktr.ee/al_vieirah"
           className={estilos.rodape__coteiner__texto}
         >
           <img className={estilos.logo} src={logo}></img>
