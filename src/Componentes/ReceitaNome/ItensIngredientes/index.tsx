@@ -30,11 +30,19 @@ export default function ItensIngredientes(props: Props) {
   const handleMoreClick = () => {
     // Chamamos a função onMoreClick passando o nome da receita
     onMoreClick(strMeal);
+    topo();
     if (!isShown) {
       setIsShown(true);
     } else {
       setIsShown(false);
     }
+  };
+
+  const topo = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (

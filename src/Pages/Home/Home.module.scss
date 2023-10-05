@@ -1,6 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Italiana&family=Kaushan+Script&family=Pacifico&family=Permanent+Marker&display=swap");
 @import "../../styles/variaveis";
 @import "../../styles/breakpoints";
 
-.home{
-  @apply bg-red-600
+.home {
+  background: rgb(8, 131, 149);
+  background: linear-gradient(
+    180deg,
+    rgba(8, 131, 149, 1) 54%,
+    rgba(9, 9, 121, 1) 84%,
+    rgba(0, 0, 0, 1) 99%
+  );
+  @apply flex flex-col items-center;
+  &__titulo {
+    font-family: "Michroma", sans-serif;
+    @apply text-2xl;
+    @media screen and (min-width: 700px) {
+      @apply text-5xl;
+    }
+    @media screen and (min-width: 1050px) {
+      @apply text-7xl;
+    }
+    @apply py-3 px-2 text-center;
+    &__1 {
+      @apply text-red-700 font-bold;
+      @media screen and (min-width: 780px) {
+        @apply cursor-pointer;
+      }
+    }
+    &__2 {
+      @apply font-bold;
+      @media screen and (min-width: 780px) {
+        @apply cursor-pointer;
+      }
+    }
+  }
+  &__imagemConteiner {
+    background-image: url("../../assets/images/brooke2.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    @apply h-[100vh] w-11/12 my-4 rounded-lg flex flex-col items-center justify-around;
+    @media screen and (min-width: 1050px) {
+      @apply h-[960px] w-[1100px] justify-around;
+    }
+    &__titulo {
+      font-family: "Kaushan Script", cursive;
+      @apply text-6xl leading-[6rem] text-brancoGelo font-bold h-1/2 text-center drop-shadow-4xl;
+      @media screen and (min-width: 700px) {
+        @apply leading-[9rem] text-8xl;
+      }
+      @media screen and (min-width: 1050px) {
+        @apply leading-[11rem] text-[11xl] w-9/12 text-brancoGelo;
+      }
+    }
+    &__botao {
+      @apply flex flex-col bg-red-700 border-metallicSeaweed h-16 w-44 justify-center text-claro font-bold items-center rounded-full border-4 mb-6 text-base;
+      @media screen and (min-width: 700px) {
+        @apply text-2xl;
+      }
+      @media screen and (min-width: 1050px) {
+        @apply text-3xl;
+      }
+      &:hover {
+        @apply bg-metallicSeaweed;
+      }
+      &:active {
+        @apply bg-red-900 drop-shadow-4xl;
+      }
+    }
+  }
 }

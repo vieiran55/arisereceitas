@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import estilos from "./Rodape.module.scss";
-import logo from "../../images/logoCvtrsy.png";
+import logo from "../../assets/images/logoCvtrsy.png";
 
 export default function Rodape() {
   return (
